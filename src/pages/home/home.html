@@ -16,9 +16,9 @@
       <ion-item *ngIf="folder['.tag'] == 'folder'" detail-push (click)="openFolder(folder.path_lower)">
         {{folder.name}}
       </ion-item>
-      <ion-item *ngIf="folder['.tag'] == 'file'">
+      <ion-item *ngIf="folder['.tag'] == 'file' && folder['name'] != 'items.json'">
         <ion-avatar item-left>
-          <img [src]="folder.path_lower" />
+          <img [src]="'data:image/jpg;base64,'+img" />
         </ion-avatar>
       </ion-item>
     </div>
