@@ -13,7 +13,9 @@ export class Home {
   depth: number = 0;
   folders: any;
   path_lower: any;
-  img_path: any;
+  img: any;
+  sharedlink: any;
+  sharedlinks: any;
   nav: any;
 
   constructor(public navCtrl: NavController, public dropbox: Dropbox, public loadingCtrl: LoadingController, public http: Http) {
@@ -52,10 +54,24 @@ export class Home {
       this.folders = data.entries;
 
       for(let folder of this.folders) {
-        this.path_lower = folder.path_lower;
-        this.img_path =  this.getImage(this.path_lower);
+
+        if (folder.name == 'items.json')
+          continue;
+
+        console.log(folder);
+
+        if (folder['.tag'] == 'file' && folder.name != 'items.json') {
+
+          this.path_lower = folder.path_lower;
+          this.dropbox.getImage(this.path_lower).subscribe(data => {
+            this.img = data;
+          }, (err) => {
+            console.log(err);
+          });
+
+        }
+
       }
-      console.log(this.img_path);
 
       this.depth++;
       loading.dismiss();
@@ -63,30 +79,17 @@ export class Home {
       console.log(err);
     });
 
-  }
+    this.dropbox.getSharedlink().subscribe(data => {
+      this.sharedlinks = data.links;
 
-  getImage(path?){
+      for(let link of this.sharedlinks) {
+        var pattern = /www.dropbox.com/i;
+        this.sharedlink = link.url.replace( pattern, "dl.dropboxusercontent.com" );
+      }
 
-    let imagePath;
-
-    if(typeof(path) == "undefined" || !path){
-
-      imagePath = {
-        path: ""
-      };
-
-    } else {
-
-      imagePath = {
-        path: path,
-        "format": "jpeg",
-        "size": "w64h64"
-      };
-
-    }
-
-    return this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', JSON.stringify(imagePath))
-        .map(res => res.json());
+    }, (err) => {
+      console.log(err);
+    });
 
   }
 
