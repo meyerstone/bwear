@@ -53,35 +53,6 @@ export class Dropbox {
 
   }
 
-  getImage(path?) {
-
-    let imagePath;
-
-    if(typeof(path) == "undefined" || !path){
-
-      imagePath = {
-        path: ""
-      };
-
-    } else {
-
-      imagePath = {
-        path: path,
-        "format": "jpeg",
-        "size": "w64h64"
-      };
-
-    }
-
-    let headers = new Headers();
-    headers.append('Authorization', 'Bearer ' + this.accessToken);
-    headers.append('Dropbox-API-Arg', JSON.stringify(imagePath));
-
-    return this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', null, {headers: headers})
-        .map(res => res.json());
-
-  }
-
   getSharedlink(path?) {
 
     let itemsPath;
