@@ -19,8 +19,7 @@
 
       <ion-item *ngIf="folder['.tag'] == 'file' && folder['name'] != 'items.json'">
         <ion-avatar item-left>
-          <img src="data:image/jpg;base64,{{img.response}}" />
-          <!--<img [src]="'data:image/jpg;base64,' + img.response" />-->
+          <img src="data:image/jpeg;base64,{{img.response}}" />
         </ion-avatar>
       </ion-item>
     </div>
