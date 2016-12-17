@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { Dropbox } from '../../providers/dropbox';
-import convertToBase64 = ts.convertToBase64;
+//import { base64Img } from 'base64-img';
 
 @Component({
   selector: 'page-home',
@@ -65,7 +65,7 @@ export class Home {
         if (folder['.tag'] == 'file' && folder.name != 'items.json') {
 
           this.path_lower = folder.path_lower;
-          this.getImage(this.path_lower).then(data => {this.img.response = data});
+          this.getImage(this.path_lower);
 
         }
 
@@ -81,7 +81,7 @@ export class Home {
       this.sharedlinks = data.links;
 
       for(let link of this.sharedlinks) {
-        var pattern = /www.dropbox.com/i;
+        let pattern = /www.dropbox.com/i;
         this.sharedlink = link.url.replace( pattern, "dl.dropboxusercontent.com" );
       }
 
@@ -95,7 +95,7 @@ export class Home {
 
     let imagePath;
 
-    if(typeof(path) == "undefined" || !path){
+    if(!path){
 
       imagePath = {
         path: ""
@@ -116,19 +116,20 @@ export class Home {
     headers.append('Dropbox-API-Arg', JSON.stringify(imagePath));
     headers.append('Content-Type', '');
 
-    return new Promise(resolve => {
 
-      this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', '', {headers: headers})
+    this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', '', {headers: headers})
           .map(res => res).subscribe(data => {
 
-        this.img.response = data['_body'];
+            var base64Img = require('base64-img');
+        this.img.response = base64Img.base64(data['_body'], function(err, data) {});
+
+
         console.log(this.img.response);
-        resolve(this.img.response);
+
       }, (err) => {
         console.log(err);
       });
 
-    });
 
   }
 
