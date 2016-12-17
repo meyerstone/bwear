@@ -53,7 +53,7 @@ export class Dropbox {
 
   }
 
-  getSharedlink(path?) {
+  getItemsJsonSharedlink(path?) {
 
     let itemsPath;
 

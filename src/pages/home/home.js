@@ -71,7 +71,7 @@ var Home = (function () {
     Home.prototype.getImage = function (path) {
         var _this = this;
         var imagePath;
-        if (!path) {
+        if (typeof (path) == "undefined" || !path) {
             imagePath = {
                 path: ""
             };
@@ -89,8 +89,8 @@ var Home = (function () {
         headers.append('Content-Type', '');
         this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', '', { headers: headers })
             .map(function (res) { return res; }).subscribe(function (data) {
-            var base64Img = require('base64-img');
-            _this.img.response = base64Img.base64(data['_body'], function (err, data) { });
+            //var base64Img = require('base64-img');
+            //this.img.response = base64Img.base64(data['_body'], function(err, data) {});
             console.log(_this.img.response);
         }, function (err) {
             console.log(err);

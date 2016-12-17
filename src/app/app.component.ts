@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Home } from '../pages/home/home';
+import {Folders} from "../pages/folders/folders";
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Home } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Home;
+  rootPage: any = Folders;
 
   pages: Array<{title: string, component: any}>;
 

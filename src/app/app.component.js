@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var ionic_angular_1 = require("ionic-angular");
 var ionic_native_1 = require("ionic-native");
-var home_1 = require("../pages/home/home");
+var folders_1 = require("../pages/folders/folders");
 var MyApp = (function () {
     function MyApp(platform) {
         this.platform = platform;
-        this.rootPage = home_1.Home;
+        this.rootPage = folders_1.Folders;
         this.initializeApp();
         // used for an example of ngFor and navigation
         /*    this.pages = [

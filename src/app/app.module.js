@@ -9,7 +9,9 @@ var core_1 = require("@angular/core");
 var ionic_angular_1 = require("ionic-angular");
 var app_component_1 = require("./app.component");
 var home_1 = require("../pages/home/home");
+var folders_1 = require("../pages/folders/folders");
 var dropbox_1 = require("../providers/dropbox");
+var items_1 = require("../pages/items/items");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,7 +21,9 @@ AppModule = __decorate([
     core_1.NgModule({
         declarations: [
             app_component_1.MyApp,
-            home_1.Home
+            home_1.Home,
+            folders_1.Folders,
+            items_1.Items
         ],
         imports: [
             ionic_angular_1.IonicModule.forRoot(app_component_1.MyApp)
@@ -27,7 +31,9 @@ AppModule = __decorate([
         bootstrap: [ionic_angular_1.IonicApp],
         entryComponents: [
             app_component_1.MyApp,
-            home_1.Home
+            home_1.Home,
+            folders_1.Folders,
+            items_1.Items
         ],
         providers: [{ provide: core_1.ErrorHandler, useClass: ionic_angular_1.IonicErrorHandler }, [dropbox_1.Dropbox]]
     })

@@ -95,7 +95,7 @@ export class Home {
 
     let imagePath;
 
-    if(!path){
+    if(typeof(path) == "undefined" || !path){
 
       imagePath = {
         path: ""
@@ -120,8 +120,8 @@ export class Home {
     this.http.post('https://content.dropboxapi.com/2/files/get_thumbnail', '', {headers: headers})
           .map(res => res).subscribe(data => {
 
-            var base64Img = require('base64-img');
-        this.img.response = base64Img.base64(data['_body'], function(err, data) {});
+            //var base64Img = require('base64-img');
+        //this.img.response = base64Img.base64(data['_body'], function(err, data) {});
 
 
         console.log(this.img.response);

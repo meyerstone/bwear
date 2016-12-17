@@ -45,7 +45,7 @@ var Dropbox = (function () {
         return this.http.post('https://api.dropboxapi.com/2-beta-2/files/list_folder', JSON.stringify(folderPath), { headers: headers })
             .map(function (res) { return res.json(); });
     };
-    Dropbox.prototype.getSharedlink = function (path) {
+    Dropbox.prototype.getItemsJsonSharedlink = function (path) {
         var itemsPath;
         if (typeof (path) == "undefined" || !path) {
             itemsPath = {
