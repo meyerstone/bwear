@@ -12,7 +12,8 @@
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-avatar item-left>
-        image
+        <!--<img src="{{item.link}}" />-->
+        <img src="data:image/jpeg;base64,{{item.link}}" />
       </ion-avatar>
       <h2>{{item.title}}</h2>
       <h3>{{item.price}}</h3>
