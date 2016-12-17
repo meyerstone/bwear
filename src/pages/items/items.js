@@ -39,7 +39,6 @@ var Items = (function () {
                 }, function (err) {
                     console.log(err);
                 });
-                ;
             }
         }, function (err) {
             loading.dismiss();

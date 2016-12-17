@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
-import { Home } from '../pages/home/home';
-import {Folders} from "../pages/folders/folders";
+import { Folders } from "../pages/folders/folders";
 
 
 @Component({

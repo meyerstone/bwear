@@ -49,7 +49,7 @@ export class Items {
           console.log(this.items);
         }, (err) => {
           console.log(err);
-        });;
+        });
 
       }
 
